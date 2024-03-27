@@ -1,4 +1,7 @@
 import { UserModel } from "../models/user.model.js";
+import bcrypt from "bcrypt";
+import jwt from 'jsonwebtoken';
+
 
 export const getAllUsers = async (request, reply) => {
     try {
@@ -6,6 +9,28 @@ export const getAllUsers = async (request, reply) => {
         reply.status(200).send(user);
     } catch (error) {
         reply.status(500).send({ message: error.message });
+    }
+}
+
+export const login = async (request, reply) => {
+    const { email, password } = request.body;
+    try {
+        const user = await UserModel.findOne({ email });
+        if (!user) {
+            return reply.status(401).send({ message: 'Correo electrónico o contraseña incorrectos' });
+        }
+        const isPasswordValid = await user.authenticate(password);
+        if (!isPasswordValid) {
+            return reply.status(401).send({ message: 'Correo electrónico o contraseña incorrectos' });
+        }
+        // Generar un token JWT
+        const token = jwt.sign({ userId: user._id, email: user.email }, 'supersecret', { expiresIn: '1h' });
+        reply.json({ token });
+        
+        return reply.send({ token: token });
+    } catch (error) {
+        console.error('Error al iniciar sesión:', error);
+        reply.status(500).send({ message: 'Error interno del servidor' });
     }
 }
 
@@ -26,8 +51,13 @@ export const getUser = async (request, reply) => {
 
 export const createUser = async (request, reply) => {
     try {
-        const contractor = await UserModel.create(request.body);
-        reply.status(201).send(contractor);
+        const hashedPassword = await bcrypt.hash(request.body.password, 10);
+        const user = {
+            ...request.body,
+            password: hashedPassword
+        };
+        const newUser = await UserModel.create(user);
+        reply.status(201).send(newUser);
     } catch (error) {
         if (error.name === 'ValidationError') {
             const errors = Object.values(error.errors).map(error => error.message);
