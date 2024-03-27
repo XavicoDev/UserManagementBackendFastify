@@ -2,7 +2,8 @@
   "name": "usermanagementbackendfastify",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/server/server.js",
+  "type": "module",
   "scripts": {
     "start": "nodemon src/server/server.js" 
   },
