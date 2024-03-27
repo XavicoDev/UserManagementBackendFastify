@@ -16,9 +16,6 @@ fastify.register(routes, { prefix: '/apiFastify/v1/' })
 
 const port = 3000;
 const uri = 'mongodb://localhost:27017/user_management';
-console.log(uri);
-// const port = 3000;
-// const uri = 'mongodb://127.0.0.1:27017/GeographicVisor';
 
 const startServer = () => {
     try {
