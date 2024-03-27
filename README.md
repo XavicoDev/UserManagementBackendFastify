@@ -2,7 +2,7 @@
 
 Este es un API para la gestión de usuarios, desarrollado utilizando Fastify y MongoDB.
 
-## Instalación
+## Instalación y ejecución
 
 1. Clona este repositorio en tu máquina local.
 2. Instala las dependencias usando npm:
@@ -18,7 +18,8 @@ Para iniciar el servidor, ejecuta el siguiente comando:
 
 Esto iniciará el servidor en el puerto predeterminado 3000.
 
-4. Rutas
+## Rutas
+
 - POST /user/freeCreate: Ruta para crear un usuario sin autenticación inicial. Esta ruta se usa para propósitos de prueba.
 - POST /login: Ruta para iniciar sesión y obtener un token JWT válido.
 - GET /user: Obtiene todos los usuarios. Se requiere autenticación JWT.
@@ -27,7 +28,7 @@ Esto iniciará el servidor en el puerto predeterminado 3000.
 - PUT /user/:id: Actualiza un usuario existente por su ID. Se requiere autenticación JWT de administrador.
 - DELETE /user/:id: Elimina un usuario por su ID. Se requiere autenticación JWT de administrador.
 
-5. Dependencias
+## Dependencias
 
 Las siguientes son las dependencias utilizadas en este proyecto:
 
