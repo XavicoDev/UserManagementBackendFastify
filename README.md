@@ -10,8 +10,7 @@ Este es un API para la gestión de usuarios, desarrollado utilizando Fastify y M
    ```bash
    npm install
 
-3. Uso
-Para iniciar el servidor, ejecuta el siguiente comando:
+3. Para iniciar el servidor, ejecuta el siguiente comando:
 
    ```bash
    npm start
@@ -20,13 +19,27 @@ Esto iniciará el servidor en el puerto predeterminado 3000.
 
 ## Rutas
 
-- POST /user/freeCreate: Ruta para crear un usuario sin autenticación inicial. Esta ruta se usa para propósitos de prueba.
-- POST /login: Ruta para iniciar sesión y obtener un token JWT válido.
-- GET /user: Obtiene todos los usuarios. Se requiere autenticación JWT.
-- GET /user/:id: Obtiene un usuario por su ID. Se requiere autenticación JWT.
-- POST /user: Crea un nuevo usuario. Se requiere autenticación JWT de administrador.
-- PUT /user/:id: Actualiza un usuario existente por su ID. Se requiere autenticación JWT de administrador.
-- DELETE /user/:id: Elimina un usuario por su ID. Se requiere autenticación JWT de administrador.
+- POST /apiFastify/v1//user/freeCreate: Ruta para crear un usuario sin autenticación inicial. Esta ruta se usa para propósitos de prueba.
+- POST /apiFastify/v1//login: Ruta para iniciar sesión y obtener un token JWT válido.
+- GET /apiFastify/v1//user: Obtiene todos los usuarios. Se requiere autenticación JWT.
+- GET /apiFastify/v1//user/:id: Obtiene un usuario por su ID. Se requiere autenticación JWT.
+- POST /apiFastify/v1//user: Crea un nuevo usuario. Se requiere autenticación JWT de administrador.
+- PUT /apiFastify/v1//user/:id: Actualiza un usuario existente por su ID. Se requiere autenticación JWT de administrador.
+- DELETE /apiFastify/v1//user/:id: Elimina un usuario por su ID. Se requiere autenticación JWT de administrador.
+
+## Ejemplo de Uso
+
+Ejecutando el servidor
+![Ejecutando servidor](img/Server.png)
+
+Primer registro de API libre
+![Ejecutando servidor](img/Insert_initial.png)
+
+Validar credenciales y generar token
+![Ejecutando servidor](img/Login.png)
+
+Listar usuarios validando token
+![Ejecutando servidor](img/Get_users.png)
 
 ## Dependencias
 
