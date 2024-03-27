@@ -1,0 +1,22 @@
+{
+  "name": "usermanagementbackendfastify",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/server/server.js" 
+  },
+  "dependencies": {
+    "@fastify/cors": "^9.0.1",
+    "boom": "^7.3.0",
+    "fastify": "^4.26.2",
+    "fastify-cors": "^6.1.0",
+    "fastify-swagger": "^5.2.0",
+    "mongoose": "^8.2.1",
+    "nodemon": "^3.1.0",
+    "swagger": "^0.7.5"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
