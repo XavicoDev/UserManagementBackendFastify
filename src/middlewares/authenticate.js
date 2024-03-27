@@ -15,3 +15,22 @@ export const authenticateJWT = async (req, res, next) => {
         return res.status(403).json({ message: 'Token de autenticación inválido' });
     }
 };
+
+export const authenticateAdminJWT = async (req, res, next) => {
+    const token = req.headers.authorization?.split(' ')[1];
+
+    if (!token) {
+        return res.status(401).json({ message: 'Token de autenticación no proporcionado' });
+    }
+
+    try {
+        const decoded = jwt.verify(token, 'supersecret');
+        if (decoded.role !== 'administrador') {
+            return res.status(403).json({ message: 'Acceso no autorizado: Se requiere el rol de administrador' });
+        }
+        req.user = decoded;
+        next();
+    } catch (error) {
+        return res.status(403).json({ message: 'Token de autenticación inválido' });
+    }
+};

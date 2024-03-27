@@ -24,10 +24,8 @@ export const login = async (request, reply) => {
             return reply.status(401).send({ message: 'Correo electrónico o contraseña incorrectos' });
         }
         // Generar un token JWT
-        const token = jwt.sign({ userId: user._id, email: user.email }, 'supersecret', { expiresIn: '1h' });
-        reply.json({ token });
-        
-        return reply.send({ token: token });
+        const token = jwt.sign({ userId: user._id, email: user.email, role: user.role }, 'supersecret', { expiresIn: '1h' });
+        return reply.send({ token });
     } catch (error) {
         console.error('Error al iniciar sesión:', error);
         reply.status(500).send({ message: 'Error interno del servidor' });
@@ -42,7 +40,7 @@ export const getUser = async (request, reply) => {
             reply.status(200).send(user);
         }
         else {
-            reply.status(404).send(`User with id:${id} not found`);
+            reply.status(404).send({ message: `User with id:${id} not found }`});
         }
     } catch (error) {
         reply.status(500).send({ message: error.message });
